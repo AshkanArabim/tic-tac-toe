@@ -1,0 +1,48 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.xinfo, .oinfo{
+    position: fixed;
+}
+
+.xinfo, .oinfo{
+    top: 10px;
+}
+
+.xinfo{
+    left: 10px;
+}
+
+.oinfo{
+    right: 10px;
+}
+
+main{
+    flex: 1 1 0;
+    background-color: green;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.credits{
+    flex: 0 0 1;
+}
+
+.credits{
+    padding: 10px;
+}
+
+.game{
+    height: 300px;
+    width: 300px;
+    background-color: blue;
+}
