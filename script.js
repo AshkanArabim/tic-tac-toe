@@ -1,9 +1,26 @@
 const game = (function () {
     let turn = 'x'
-    const cells = document.querySelectorAll('.game div');
+    const cells = Array.from(document.querySelectorAll('.game div'));
+    const restartBtn = document.getElementById('restart');
+
+    function switchTurn () {
+        if (turn === 'x') {
+            turn = 'o';
+        } else if (turn === 'o') {
+            turn = 'x';
+        }
+    }
 
     const gameboard = (function () {
-        let _board = ['x','o','x','o','o','x','x','x','o'];
+        let _board = [null,null,null,null,null,null,null,null,null];
+
+        function restart() {
+            for (let cellIndex in cells) {
+                cells[cellIndex].classList.remove('x');
+                cells[cellIndex].classList.remove('o');
+                _board = [null,null,null,null,null,null,null,null,null];
+            }
+        }
     
         function board () {
             return [..._board];
@@ -19,41 +36,29 @@ const game = (function () {
             }
         }
     
-        function addmark (xOrO, clickedCell) {
-            // if () {
-            //     return
-            // } else {
-            //     cells[clickedCell].classList.add(xOrO);
-            // }
-
-            //incomplete
-    
+        function addmark (sign, clickedCell) {
+            if (_board[clickedCell]) {
+                return
+            } else {
+                cells[clickedCell].classList.toggle(sign);
+                _board[clickedCell] = sign;
+            }
+            switchTurn()
             render()
         }
     
-        return {board, addmark};
+        return {board, addmark, restart};
     }) ();
 
-    function switchTurn () {
-        if (turn === 'x') {
-            turn = 'o';
-        } else if (turn === 'o') {
-            turn = 'x';
-        }
-    }
-
     for (let cellIndex in cells) {
-        console.log(`length of cells: ${cells.length}`)
-        console.log(`cell index: ${cellIndex}`)
-        console.log(`cellIndex in cells: ${cells[cellIndex]}`)
-        console.log('-----------------')
-
-        cells[cellIndex].addEventListener('click', (turn) => {
-            alert('lol') //check if addEventListener works
+        cells[cellIndex].addEventListener('click', () => {
             gameboard.addmark(turn, cellIndex);
-            switchTurn()
         })
     }
+
+    restartBtn.addEventListener('click', () => {
+        gameboard.restart()
+    })
 
     function human(xOrO) {
         const sign = xOrO;
