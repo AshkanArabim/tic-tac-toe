@@ -1,4 +1,5 @@
 const game = (function () {
+    let turn = 'x'
     const cells = document.querySelectorAll('.game div');
 
     const gameboard = (function () {
@@ -18,19 +19,42 @@ const game = (function () {
             }
         }
     
-        function addmark (xOrO, cellIndex) {
-            if (cells[cellIndex]) {
-                return
-            } else {
-                cells[cellIndex].classList.add(xOrO);
-            }
+        function addmark (xOrO, clickedCell) {
+            // if () {
+            //     return
+            // } else {
+            //     cells[clickedCell].classList.add(xOrO);
+            // }
+
+            //incomplete
     
             render()
         }
     
         return {board, addmark};
     }) ();
-    
+
+    function switchTurn () {
+        if (turn === 'x') {
+            turn = 'o';
+        } else if (turn === 'o') {
+            turn = 'x';
+        }
+    }
+
+    for (let cellIndex in cells) {
+        console.log(`length of cells: ${cells.length}`)
+        console.log(`cell index: ${cellIndex}`)
+        console.log(`cellIndex in cells: ${cells[cellIndex]}`)
+        console.log('-----------------')
+
+        cells[cellIndex].addEventListener('click', (turn) => {
+            alert('lol') //check if addEventListener works
+            gameboard.addmark(turn, cellIndex);
+            switchTurn()
+        })
+    }
+
     function human(xOrO) {
         const sign = xOrO;
         return {sign};
@@ -41,8 +65,8 @@ const game = (function () {
         return {sign};
     }
 
-    return {human, bot}
+    return {human, bot};
 }) ();
 
 const player1 = game.human('x');
-const player2 = game.bot('o');
+const player2 = game.human('o');
