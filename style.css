@@ -44,5 +44,21 @@ main{
 .game{
     height: 300px;
     width: 300px;
+    background-color: black;
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+    padding: 5px;
+    gap: 5px;
+}
+
+.game div{
+    background-color: yellow;
+}
+
+.game div.x{
+    background-color: red;
+}
+
+.game div.o{
     background-color: blue;
 }
