@@ -11,6 +11,10 @@ const game = (function () {
         }
     }
 
+    function win(sign) {
+        alert(`Player ${sign} won!`);
+    }
+
     const gameboard = (function () {
         let _board = [null,null,null,null,null,null,null,null,null];
 
@@ -19,6 +23,7 @@ const game = (function () {
                 cells[cellIndex].classList.remove('x');
                 cells[cellIndex].classList.remove('o');
                 _board = [null,null,null,null,null,null,null,null,null];
+                turn = 'x'; 
             }
         }
     
@@ -26,7 +31,7 @@ const game = (function () {
             return [..._board];
         }
     
-        function render () {
+        function _render () {
             for (let cellIndex in cells) {
                 if (_board[cellIndex] === 'x') {
                     cells[cellIndex].classList.add('x');
@@ -43,8 +48,26 @@ const game = (function () {
                 cells[clickedCell].classList.toggle(sign);
                 _board[clickedCell] = sign;
             }
+
+            console.log(_board)
+
             switchTurn()
-            render()
+            _render()
+            
+            if (
+                _board[0] === _board[1] === _board[2] ||
+                _board[3] === _board[4] === _board[5] ||
+                _board[6] === _board[7] === _board[8] ||
+                _board[0] === _board[3] === _board[6] ||
+                _board[1] === _board[4] === _board[5] ||
+                _board[2] === _board[5] === _board[8] ||
+                _board[0] === _board[4] === _board[8] ||
+                _board[2] === _board[4] === _board[6]
+            ) {
+                win(sign);
+            } else if (!(_board.includes(null))) {
+                alert('board full')
+            }
         }
     
         return {board, addmark, restart};
