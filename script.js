@@ -13,6 +13,7 @@ const game = (function () {
 
     function win(sign) {
         alert(`Player ${sign} won!`);
+        gameboard.restart();
     }
 
     const gameboard = (function () {
@@ -31,13 +32,12 @@ const game = (function () {
                     return false;
                 };
             }
-
             if(
                 ThreeEq(_board[0], _board[1], _board[2]) ||
                 ThreeEq(_board[3], _board[4], _board[5]) ||
                 ThreeEq(_board[6], _board[7], _board[8]) ||
                 ThreeEq(_board[0], _board[3], _board[6]) ||
-                ThreeEq(_board[1], _board[4], _board[5]) ||
+                ThreeEq(_board[1], _board[4], _board[7]) ||
                 ThreeEq(_board[2], _board[5], _board[8]) ||
                 ThreeEq(_board[0], _board[4], _board[8]) ||
                 ThreeEq(_board[2], _board[4], _board[6])
@@ -65,10 +65,6 @@ const game = (function () {
             }
         }
     
-        function board () {
-            return [..._board];
-        }
-    
         function _render () {
             for (let cellIndex in cells) {
                 if (_board[cellIndex] === 'x') {
@@ -86,18 +82,16 @@ const game = (function () {
                 cells[clickedCell].classList.toggle(sign);
                 _board[clickedCell] = sign;
             }
-
             switchTurn()
             _render()
-
             if (_hasWon()) {
                 win(sign);
             } else if (_boardFull()) {
-                alert('board full')
+                alert('tie')
             }
         }
     
-        return {board, addmark, restart};
+        return {addmark, restart};
     }) ();
 
     for (let cellIndex in cells) {
