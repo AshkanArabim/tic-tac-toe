@@ -2,6 +2,19 @@
     box-sizing: border-box;
 }
 
+*:focus, *:focus-visible{
+    outline: 0;
+}
+
+:root{
+    --lv0: white;
+    --lv1: #ddd;
+    --lv2: #bbb;
+    --lv3: #888;
+
+    --br1: 25px;
+}
+
 body{
     height: 100vh;
     display: flex;
@@ -17,7 +30,7 @@ main{
 }
 
 .status, .credits{
-    background-color: #ddd;
+    background-color: var(--lv1);
     padding: 10px;
 }
 
@@ -44,7 +57,7 @@ main{
 }
 
 .game div{
-    background-color: #ddd;
+    background-color: var(--lv1);
     background-size: auto 70%;
     background-repeat: no-repeat;
     background-position: center;
@@ -52,23 +65,23 @@ main{
 }
 
 .game div:hover{
-    box-shadow: 0px 5px 10px #bbb;
+    box-shadow: 0px 5px 10px var(--lv2);
 }
 
 .game div:first-child{
-    border-top-left-radius: 25px;
+    border-top-left-radius: var(--br1);
 }
 
 .game div:nth-child(3){
-    border-top-right-radius: 25px;
+    border-top-right-radius: var(--br1);
 }
 
 .game div:last-child{
-    border-bottom-right-radius: 25px;
+    border-bottom-right-radius: var(--br1);
 }
 
 .game div:nth-child(7){
-    border-bottom-left-radius: 25px;
+    border-bottom-left-radius: var(--br1);
 }
 
 .game div.x, .turndisplay.x{
@@ -77,4 +90,51 @@ main{
 
 .game div.o, .turndisplay.o{
     background-image: url(./assets/o.svg);
+}
+
+.main-menu{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--lv1);
+    display: flex;
+}
+
+.main-menu.hidden{
+    display: none;
+}
+
+.main-menu>div{
+    flex: 1 1 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pic{
+    width: 250px;
+    height: 250px;
+    background-color: var(--lv3);
+    border-radius: var(--br1) var(--br1) 0 0;
+}
+
+.profile{
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--br1) var(--br1) var(--br1) var(--br1);
+    box-shadow: 0 15px 40px var(--lv3), 0 -25px 40px white;
+}
+
+.profile *:last-child{
+    border-radius: 0 0 var(--br1) var(--br1);
+}
+
+button{
+    background-color: white;
+    padding: 10px;
+    border: none
+}
+
+button:hover, button:focus, button:focus-visible{
+    background-color: #eee;
 }
