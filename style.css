@@ -111,11 +111,11 @@ main{
 
 .profile-holder{
     flex: 1 1 0;
-    display: flex;
+    display: grid;
+    grid-template-columns: 6fr 1fr 6fr;
 }
 
 .profile-holder>div{
-    flex: 1 1 0;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -1,7 +1,6 @@
 const game = (function () {
     const cells = Array.from(document.querySelectorAll('.game div'));
     const restartBtn = document.getElementById('restart');
-    // const 
     let turn = 'x'
 
     function switchTurn () {
@@ -119,3 +118,7 @@ const game = (function () {
 
     return;
 }) ();
+
+const login = (function() {
+    
+})
