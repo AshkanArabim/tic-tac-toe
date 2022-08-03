@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+html{
+    font-family: 'Courier New', Courier, monospace;
+}
+
 *:focus, *:focus-visible{
     outline: 0;
 }
@@ -98,13 +102,19 @@ main{
     height: 100vh;
     background-color: var(--lv1);
     display: flex;
+    flex-direction: column;
 }
 
 .main-menu.hidden{
     display: none;
 }
 
-.main-menu>div{
+.profile-holder{
+    flex: 1 1 0;
+    display: flex;
+}
+
+.profile-holder>div{
     flex: 1 1 0;
     display: flex;
     align-items: center;
@@ -116,6 +126,17 @@ main{
     height: 250px;
     background-color: var(--lv3);
     border-radius: var(--br1) var(--br1) 0 0;
+    background-size: auto 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.pic.x{
+    background-image: url(./assets/x.svg);
+}
+
+.pic.o{
+    background-image: url(./assets/o.svg);
 }
 
 .profile{
@@ -130,7 +151,7 @@ main{
 }
 
 button{
-    background-color: white;
+    background-color: var(--lv0);
     padding: 10px;
     border: none
 }

@@ -1,9 +1,8 @@
 const game = (function () {
     const cells = Array.from(document.querySelectorAll('.game div'));
     const restartBtn = document.getElementById('restart');
-    const turnDisplay = document.querySelector('.turndisplay');
+    // const 
     let turn = 'x'
-    turnDisplay.classList.add('x')
 
     function switchTurn () {
         if (turn === 'x') {
@@ -11,8 +10,6 @@ const game = (function () {
         } else if (turn === 'o') {
             turn = 'x';
         }
-        turnDisplay.classList.toggle('x');
-        turnDisplay.classList.toggle('o');
     }
 
     function win(sign) {
@@ -120,8 +117,5 @@ const game = (function () {
         return {sign};
     }
 
-    return {human, bot};
+    return;
 }) ();
-
-const player1 = game.human('x');
-const player2 = game.human('o');
