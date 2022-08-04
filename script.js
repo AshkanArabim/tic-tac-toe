@@ -1,7 +1,19 @@
 const game = (function () {
     const cells = Array.from(document.querySelectorAll('.game div'));
+    const beginBtn = document.querySelector('.profile-holder>div:nth-child(2)>button');
+    const mainMenu = document.querySelector('.main-menu');
     const restartBtn = document.getElementById('restart');
     let turn = 'x'
+
+    function human(xOrO) {
+        const sign = xOrO;
+        return {sign};
+    }
+
+    function bot(xOrO) {
+        const sign = xOrO;
+        return {sign};
+    }
 
     function switchTurn () {
         if (turn === 'x') {
@@ -15,6 +27,21 @@ const game = (function () {
         alert(`Player ${sign} won!`);
         gameboard.restart();
     }
+
+    function tie() {
+        alert('Tie!')
+        gameboard.restart();
+    }
+
+    const login = (function() {
+        beginBtn.addEventListener('click', () => {
+            mainMenu.classList.add('hidden');
+        })
+
+        restartBtn.addEventListener('click', () => {
+            gameboard.restart()
+        })
+    }) ();
 
     const gameboard = (function () {
         let _board = [null,null,null,null,null,null,null,null,null];
@@ -63,8 +90,7 @@ const game = (function () {
             }
             _board = [null,null,null,null,null,null,null,null,null];
             turn = 'x'; 
-            turnDisplay.classList.add('x')
-            turnDisplay.classList.remove('o')
+            mainMenu.classList.remove('hidden');
         }
     
         function _render () {
@@ -89,7 +115,7 @@ const game = (function () {
             if (_hasWon()) {
                 win(sign);
             } else if (_boardFull()) {
-                alert('tie')
+                tie();
             }
         }
     
@@ -102,23 +128,5 @@ const game = (function () {
         })
     }
 
-    restartBtn.addEventListener('click', () => {
-        gameboard.restart()
-    })
-
-    function human(xOrO) {
-        const sign = xOrO;
-        return {sign};
-    }
-
-    function bot(xOrO) {
-        const sign = xOrO;
-        return {sign};
-    }
-
     return;
 }) ();
-
-const login = (function() {
-    
-})
