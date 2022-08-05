@@ -30,14 +30,23 @@ const game = (function () {
         }
     }
 
+    function gameAlert(appear, text) {
+        const cover = document.querySelector('.congrats');
+        cover.textContent = text;
+
+        if (appear === true) {
+            cover.classList.remove('hidden');
+        } else if (appear === false) {
+            cover.classList.add('hidden');
+        }
+    }
+
     function win(sign) {
-        alert(`Player ${sign} won!`);
-        gameboard.restart();
+        gameAlert(true, `Player ${sign} won!`);
     }
 
     function tie() {
-        alert('Tie!')
-        gameboard.restart();
+        gameAlert(true, 'Tie!')
     }
 
     const login = (function() {
@@ -46,7 +55,8 @@ const game = (function () {
         })
 
         restartBtn.addEventListener('click', () => {
-            gameboard.restart()
+            gameboard.restart();
+            gameAlert(false, '');
         })
     }) ();
 
