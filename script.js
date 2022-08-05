@@ -15,11 +15,18 @@ const game = (function () {
         return {sign};
     }
 
-    function switchTurn () {
-        if (turn === 'x') {
-            turn = 'o';
-        } else if (turn === 'o') {
+    function switchTurn (sign) {
+        const xlight = document.querySelector('.xinfo');
+        const olight = document.querySelector('.oinfo');
+
+        if ((sign === 'x') || (sign === undefined && turn === 'o')) {
             turn = 'x';
+            olight.classList.remove('turn');
+            xlight.classList.add('turn');
+        } else if ((sign === 'o') || (sign === undefined && turn === 'x')) {
+            turn = 'o';
+            xlight.classList.remove('turn');
+            olight.classList.add('turn');
         }
     }
 
@@ -89,7 +96,7 @@ const game = (function () {
                 cells[cellIndex].classList.remove('o');
             }
             _board = [null,null,null,null,null,null,null,null,null];
-            turn = 'x'; 
+            switchTurn('x');
             mainMenu.classList.remove('hidden');
         }
     

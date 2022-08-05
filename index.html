@@ -5,19 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>tic-tac-toe</title>
-    <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./reset.css">
+    <link rel="stylesheet" href="./style.css">
     <script src="./script.js" defer></script>
 </head>
 <body>
-    <div class="status">
-        <span class="xinfo">
-            X
+    <nav>
+        <span class="xinfo turn">
+            X's turn
         </span>
         <span class="oinfo">
-            O
+            O's turn
         </span>
-    </div>
+    </nav>
     <main>
         <div class="game">
             <div></div>
@@ -32,10 +32,10 @@
         </div>
         <button type="button" id="restart">Restart</button>
     </main>
-    <div class="credits">
+    <footer>
             tic-tac-toe, © <a href="https://github.com/AshkanArabim/">AshkanArabim</a>
-    </div>
-    <div class="main-menu">
+    </footer>
+    <div class="main-menu hidden">
         <div class="profile-holder">
             <div class="x">
                 <div class="profile">

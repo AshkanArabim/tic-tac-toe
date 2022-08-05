@@ -11,10 +11,11 @@ html{
 }
 
 :root{
-    --lv0: white;
+    --lv0: #fff;
     --lv1: #ddd;
     --lv2: #bbb;
     --lv3: #888;
+    --shadow: rgba(0, 0, 0, 0.5);
 
     --br1: 25px;
 }
@@ -31,37 +32,38 @@ main{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: var(--lv1);
+    gap: 60px;
 }
 
-.status, .credits{
-    background-color: var(--lv1);
+nav, footer{
     padding: 10px;
 }
 
-.status {
+footer {
+    background-color: var(--lv1);
+}
+
+nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-.turndisplay {
-    width: 50px;
-    height: 50px;
-    background-size: auto 80%;
-    background-repeat: no-repeat;
-    background-position: center;
+    background-color: var(--lv2);
 }
 
 .game{
     height: 50vh;
     width: 50vh;
+    border-radius: var(--br1);
+    box-shadow: 0 18px 30px var(--shadow), 0 -35px 40px white;
+    background-color: var(--lv1);
     display: grid;
     grid-template: repeat(3, 1fr) / repeat(3, 1fr);
     gap: 5px;
 }
 
 .game div{
-    background-color: var(--lv1);
+    background-color: var(--lv0);
     background-size: auto 70%;
     background-repeat: no-repeat;
     background-position: center;
@@ -69,7 +71,8 @@ main{
 }
 
 .game div:hover{
-    box-shadow: 0px 5px 10px var(--lv2);
+    /* box-shadow: 0px 5px 10px var(--shadow); */
+    background-color: var(--lv1);
 }
 
 .game div:first-child{
@@ -88,11 +91,11 @@ main{
     border-bottom-left-radius: var(--br1);
 }
 
-.game div.x, .turndisplay.x{
+.game div.x{
     background-image: url(./assets/x.svg);
 }
 
-.game div.o, .turndisplay.o{
+.game div.o{
     background-image: url(./assets/o.svg);
 }
 
@@ -143,7 +146,7 @@ main{
     display: flex;
     flex-direction: column;
     border-radius: var(--br1) var(--br1) var(--br1) var(--br1);
-    box-shadow: 0 15px 40px var(--lv3), 0 -25px 40px white;
+    box-shadow: 0 18px 30px var(--shadow), 0 -35px 40px white;
 }
 
 .profile *:last-child{
@@ -158,4 +161,26 @@ button{
 
 button:hover, button:focus, button:focus-visible{
     background-color: #eee;
+}
+
+.xinfo, .oinfo{
+    padding: 10px 20px;
+    border-radius: var(--br1);
+    background-color: var(--lv3);
+    box-shadow: inset 0px 2px 5px var(--shadow);
+}
+
+.turn{
+    font-weight: bold;
+    color: var(--lv0);
+}
+
+.xinfo.turn{
+    background-color: #f00;
+    box-shadow: 0 2px 35px rgba(255, 0, 0, 0.6);
+}
+
+.oinfo.turn{
+    background-color: #00f;
+    box-shadow: 0 2px 45px rgba(0, 0, 255, 0.6);
 }
