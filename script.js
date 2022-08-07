@@ -5,15 +5,101 @@ const game = (function () {
     const restartBtn = document.getElementById('restart');
     let turn = 'x'
 
-    function human(xOrO) {
-        const sign = xOrO;
-        return {sign};
-    }
+    // const createPlayer = (function() {
+    //     function human() {
+    //         this.playerType = 'human';
+    //     }
 
-    function bot(xOrO) {
-        const sign = xOrO;
-        return {sign};
-    }
+    //     function bot(difficulty = 'easy') {
+    //         this.playerType = 'bot';
+    //         if (difficulty === 'easy') {
+    //             //easy
+    //         } else if (difficulty === 'normal') {
+    //             //normal
+    //         } else if (difficulty === 'unbeatable') {
+    //             //unbeatable
+    //         }
+    //     };
+
+    //     const playerX = (function() {
+    //         const humanBtn = document.getElementById('xhuman');
+    //         const botBtn = document.getElementById('xbot');
+
+    //         humanBtn.addEventListener('click', () => {
+    //             alert('player x clicked human');
+    //             human();
+    //         });
+    //         botBtn.addEventListener('click', () => {
+    //             alert('player x clicked bot');
+    //             bot();
+    //         })
+            
+    //         return;
+    //     }) ();
+
+    //     const playerO = (function() {
+    //         let playerType = '';
+    //         const humanBtn = document.getElementById('ohuman');
+    //         const botBtn = document.getElementById('obot');
+
+    //         humanBtn.addEventListener('click', () => {
+    //             human();
+    //         });
+    //         botBtn.addEventListener('click', () => {
+    //             bot();
+    //             console.log(playerType)
+    //         })
+
+    //         return {playerType}
+    //     }) ();  
+
+    //     return;
+    // }) ();
+
+    const player = (function() {
+        const signs = ['x','o'];
+
+        function propAssign(type) {
+            if (type = 'human') {
+                //human
+            } else if (type = 'AI1') {
+                //ai 1
+            } else if (type = 'AI2') {
+                //ai 2
+            } else if (type = 'AI3') {
+                //ai 3
+            }
+        }
+
+        for (let playerIndex in signs) {
+            window[signs[playerIndex]] = (function() {
+                const humanBtn = document.querySelector(`#${signs[playerIndex]}human`);
+                const botBtn = document.querySelector(`#${signs[playerIndex]}bot`);
+                let type = undefined;
+                humanBtn.addEventListener('click', () => {
+                    type = 'human';
+                    propAssign(type);
+                    console.log(`${humanBtn.id} clicked`)
+                });
+                botBtn.addEventListener('click', () => {
+                    type = 'AI1';
+                    propAssign(type);
+                    console.log(`${botBtn.id} clicked`)
+                })
+            }) ();
+        }
+    }) ();
+
+    const login = (function() {
+        beginBtn.addEventListener('click', () => {
+            mainMenu.classList.add('hidden');
+        })
+
+        restartBtn.addEventListener('click', () => {
+            gameboard.restart();
+            gameAlert(false, '');
+        })
+    }) ();
 
     function switchTurn (sign) {
         const xlight = document.querySelector('.xinfo');
@@ -42,23 +128,12 @@ const game = (function () {
     }
 
     function win(sign) {
-        gameAlert(true, `Player ${sign} won!`);
+        gameAlert(true, `Player ${sign.toUpperCase()} won!`);
     }
 
     function tie() {
         gameAlert(true, 'Tie!')
     }
-
-    const login = (function() {
-        beginBtn.addEventListener('click', () => {
-            mainMenu.classList.add('hidden');
-        })
-
-        restartBtn.addEventListener('click', () => {
-            gameboard.restart();
-            gameAlert(false, '');
-        })
-    }) ();
 
     const gameboard = (function () {
         let _board = [null,null,null,null,null,null,null,null,null];
