@@ -17,17 +17,13 @@ const game = (function () {
         return function() {
           gameboard.addmark(sign, gameboard.randomFromUnchecked())
         }
-      } else if (type === 'AI2') {
-        //ai 2
-      } else if (type === 'AI3') {
-        //ai 3
       }
     }
 
     for (let playerIndex in signs) {
       window[signs[playerIndex]] = (function() {
         const humanBtn = document.querySelector(`#${signs[playerIndex]}human`);
-        const botBtn = document.querySelector(`#${signs[playerIndex]}botstupid`);
+        const botBtn = document.querySelector(`#${signs[playerIndex]}bot`);
         const sign = signs[playerIndex];
         let type = 'human';
         let fx = funcAssign(type, sign);
@@ -127,6 +123,9 @@ const game = (function () {
         } else {
           return false;
         };
+      }
+      function threeInRow() {
+
       }
       if(
         ThreeEq(_board[0], _board[1], _board[2]) ||
