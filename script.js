@@ -1,5 +1,6 @@
 const game = (function () {
     const cells = Array.from(document.querySelectorAll('.game div'));
+    // const boardHolder = document.querySelector('.game')
     const beginBtn = document.querySelector('.profile-holder>div:nth-child(2)>button');
     const mainMenu = document.querySelector('.main-menu');
     const restartBtn = document.getElementById('restart');
@@ -38,17 +39,18 @@ const game = (function () {
                     type = 'AI1';
                     fx = funcAssign(type, sign);
                 })
-                document.addEventListener('click', () => {
+                setInterval(() => {
                     if (turn === sign) {
                         fx();
-                    }
-                })
+                    }                    
+                }, 1000);
             }) ();
         }
     }) ();
 
     const login = (function() {
         beginBtn.addEventListener('click', () => {
+            gameboard.restart();
             mainMenu.classList.add('hidden');
         })
 
