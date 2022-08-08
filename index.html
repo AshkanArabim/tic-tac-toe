@@ -1,75 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tic-tac-toe</title>
-    <link rel="stylesheet" href="./reset.css">
-    <link rel="stylesheet" href="./style.css">
-    <script src="./script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tic-tac-toe</title>
+  <link rel="stylesheet" href="./reset.css">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
 </head>
 <body>
-    <nav>
-        <span class="xinfo turn">
-            X's turn
-        </span>
-        <span class="oinfo">
-            O's turn
-        </span>
-    </nav>
-    <main>
-        <div class="game">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <span class="congrats hidden">
-                YAY U WIN!
-            </span>
-            <div></div>
-        </div>
-        <button type="button" class="outsider" id="restart">Restart</button>
-    </main>
-    <div class="main-menu">
-        <div class="profile-holder">
-            <div class="x">
-                <div class="profile">
-                    <div class="pic x"></div>
-                    <label for="xhuman">
-                        <input type="radio" name="xtype" id="xhuman" checked>
-                        Human
-                    </label>
-                    <label for="xbot">
-                        <input type="radio" name="xtype" id="xbot">
-                        Bot
-                    </label>
-                </div>
-            </div>
-            <div>
-                <button type="button" class="outsider">begin</button>
-            </div>
-            <div class="o">
-                <div class="profile">
-                    <div class="pic o"></div>
-                    <label for="ohuman">
-                        <input type="radio" name="otype" id="ohuman" checked>
-                        Human
-                    </label>
-                    <label for="obot">
-                        <input type="radio" name="otype" id="obot">
-                        Bot
-                    </label>
-                </div>
-            </div>
-        </div>
+  <nav>
+    <span class="xinfo turn">
+      X's turn
+    </span>
+    <span class="oinfo">
+      O's turn
+    </span>
+  </nav>
+  <main>
+    <div class="game">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <span class="congrats hidden">
+        YAY U WIN!
+      </span>
+      <div></div>
     </div>
-    <footer>
-            tic-tac-toe, © <a href="https://github.com/AshkanArabim/">AshkanArabim</a>
-    </footer>
+    <button type="button" id="restart">Restart</button>
+  </main>
+  <div class="main-menu">
+    <div class="profile-holder">
+      <div class="x">
+        <div class="profile">
+          <div class="pic x"></div>
+          <label for="xhuman">
+            <input type="radio" name="xtype" id="xhuman" checked>
+            Human
+          </label>
+          <label for="xbotstupid">
+            <input type="radio" name="xtype" id="xbotstupid">
+            Bot - level 1
+          </label>
+          <label for="xbotsmart">
+            <input type="radio" name="xtype" id="xbotsmart">
+            Bot - level 2
+          </label>
+        </div>
+      </div>
+      <div>
+        <button type="button">begin</button>
+      </div>
+      <div class="o">
+        <div class="profile">
+          <div class="pic o"></div>
+          <label for="ohuman">
+            <input type="radio" name="otype" id="ohuman" checked>
+            Human
+          </label>
+          <label for="obotstupid">
+            <input type="radio" name="otype" id="obotstupid">
+            Bot - level 1
+          </label>
+          <label for="obotsmart">
+            <input type="radio" name="otype" id="obotsmart">
+            Bot - level 2
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+      tic-tac-toe, © <a href="https://github.com/AshkanArabim/">AshkanArabim</a>
+  </footer>
 </body>
 </html>

@@ -160,11 +160,31 @@ nav {
 button{
     background-color: var(--lv0);
     padding: 10px;
-    border: none
+    border: none;
+    border-radius: var(--br1);
+    padding: 10px 20px;
+    transition: 0.1s;
+    box-shadow: 0 1px 2px var(--shadow);
 }
 
 button:hover, button:focus, button:focus-visible{
     background-color: #eee;
+    background-color: white;
+    box-shadow: 0 3px 8px var(--shadow);
+}
+
+button:active{
+    box-shadow: 0 0 0;
+}
+
+label{
+    background-color: var(--lv0);
+    padding: 10px 20px;
+    border-top: 1px solid var(--lv3);
+}
+
+label:hover{
+    background-color: var(--lv1);
 }
 
 .xinfo, .oinfo{
@@ -188,22 +208,6 @@ button:hover, button:focus, button:focus-visible{
 .oinfo.turn{
     background-color: #00f;
     box-shadow: 0 2px 45px rgba(0, 0, 255, 0.6);
-}
-
-.outsider{
-    border-radius: var(--br1);
-    padding: 10px 20px;
-    transition: 0.1s;
-    box-shadow: 0 1px 2px var(--shadow);
-}
-
-.outsider:hover{
-    background-color: white;
-    box-shadow: 0 3px 8px var(--shadow);
-}
-
-.outsider:active{
-    box-shadow: 0 0 0;
 }
 
 .congrats{
