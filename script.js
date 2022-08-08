@@ -59,14 +59,19 @@ const game = (function () {
     const player = (function() {
         const signs = ['x','o'];
 
-        function propAssign(type) {
-            if (type = 'human') {
-                //human
-            } else if (type = 'AI1') {
-                //ai 1
-            } else if (type = 'AI2') {
+        function funcAssign(type, sign) {
+            if (type === 'human') {
+                return function() {
+                    console.log(`human fired (${sign})`)
+                }
+            } else if (type === 'AI1') {
+                return function() {
+                    gameboard.addmark(sign, gameboard.randomFromUnchecked())
+                    console.log('bot fired')
+                }
+            } else if (type === 'AI2') {
                 //ai 2
-            } else if (type = 'AI3') {
+            } else if (type === 'AI3') {
                 //ai 3
             }
         }
@@ -75,16 +80,23 @@ const game = (function () {
             window[signs[playerIndex]] = (function() {
                 const humanBtn = document.querySelector(`#${signs[playerIndex]}human`);
                 const botBtn = document.querySelector(`#${signs[playerIndex]}bot`);
-                let type = undefined;
+                const sign = signs[playerIndex];
+                let type = 'human';
+                let fx = funcAssign(type, sign);
                 humanBtn.addEventListener('click', () => {
                     type = 'human';
-                    propAssign(type);
-                    console.log(`${humanBtn.id} clicked`)
+                    fx = funcAssign(type, sign);
+                    console.log(`${sign} is human`)
                 });
                 botBtn.addEventListener('click', () => {
                     type = 'AI1';
-                    propAssign(type);
-                    console.log(`${botBtn.id} clicked`)
+                    fx = funcAssign(type, sign);
+                    console.log(`${sign} is bot`)
+                })
+                document.addEventListener('click', () => {
+                    if (turn === sign) {
+                        fx();
+                    }
                 })
             }) ();
         }
@@ -137,6 +149,19 @@ const game = (function () {
 
     const gameboard = (function () {
         let _board = [null,null,null,null,null,null,null,null,null];
+
+        function randomFromUnchecked() {
+            function getAllIndexes(arr, val) {
+                var indexes = [], i;
+                for(i = 0; i < arr.length; i++)
+                    if (arr[i] === val)
+                        indexes.push(i);
+                return indexes;
+            }
+
+            let indexes = getAllIndexes(_board, null);
+            return indexes[(Math.floor((Math.random())*indexes.length))];
+        }
 
         function _hasWon() {
             function ThreeEq(a,b,c) {
@@ -211,7 +236,7 @@ const game = (function () {
             }
         }
     
-        return {addmark, restart};
+        return {addmark, restart, randomFromUnchecked};
     }) ();
 
     for (let cellIndex in cells) {
