@@ -5,69 +5,16 @@ const game = (function () {
     const restartBtn = document.getElementById('restart');
     let turn = 'x'
 
-    // const createPlayer = (function() {
-    //     function human() {
-    //         this.playerType = 'human';
-    //     }
-
-    //     function bot(difficulty = 'easy') {
-    //         this.playerType = 'bot';
-    //         if (difficulty === 'easy') {
-    //             //easy
-    //         } else if (difficulty === 'normal') {
-    //             //normal
-    //         } else if (difficulty === 'unbeatable') {
-    //             //unbeatable
-    //         }
-    //     };
-
-    //     const playerX = (function() {
-    //         const humanBtn = document.getElementById('xhuman');
-    //         const botBtn = document.getElementById('xbot');
-
-    //         humanBtn.addEventListener('click', () => {
-    //             alert('player x clicked human');
-    //             human();
-    //         });
-    //         botBtn.addEventListener('click', () => {
-    //             alert('player x clicked bot');
-    //             bot();
-    //         })
-            
-    //         return;
-    //     }) ();
-
-    //     const playerO = (function() {
-    //         let playerType = '';
-    //         const humanBtn = document.getElementById('ohuman');
-    //         const botBtn = document.getElementById('obot');
-
-    //         humanBtn.addEventListener('click', () => {
-    //             human();
-    //         });
-    //         botBtn.addEventListener('click', () => {
-    //             bot();
-    //             console.log(playerType)
-    //         })
-
-    //         return {playerType}
-    //     }) ();  
-
-    //     return;
-    // }) ();
-
     const player = (function() {
         const signs = ['x','o'];
 
         function funcAssign(type, sign) {
             if (type === 'human') {
                 return function() {
-                    console.log(`human fired (${sign})`)
                 }
             } else if (type === 'AI1') {
                 return function() {
                     gameboard.addmark(sign, gameboard.randomFromUnchecked())
-                    console.log('bot fired')
                 }
             } else if (type === 'AI2') {
                 //ai 2
@@ -86,12 +33,10 @@ const game = (function () {
                 humanBtn.addEventListener('click', () => {
                     type = 'human';
                     fx = funcAssign(type, sign);
-                    console.log(`${sign} is human`)
                 });
                 botBtn.addEventListener('click', () => {
                     type = 'AI1';
                     fx = funcAssign(type, sign);
-                    console.log(`${sign} is bot`)
                 })
                 document.addEventListener('click', () => {
                     if (turn === sign) {
@@ -125,6 +70,8 @@ const game = (function () {
             turn = 'o';
             xlight.classList.remove('turn');
             olight.classList.add('turn');
+        } else if (sign === 'static') {
+            turn = 'static';
         }
     }
 
@@ -141,10 +88,12 @@ const game = (function () {
 
     function win(sign) {
         gameAlert(true, `Player ${sign.toUpperCase()} won!`);
+        switchTurn('static');
     }
 
     function tie() {
-        gameAlert(true, 'Tie!')
+        gameAlert(true, 'Tie!');
+        switchTurn('static');
     }
 
     const gameboard = (function () {
@@ -227,13 +176,13 @@ const game = (function () {
                 cells[clickedCell].classList.toggle(sign);
                 _board[clickedCell] = sign;
             }
-            switchTurn()
             _render()
             if (_hasWon()) {
                 win(sign);
             } else if (_boardFull()) {
                 tie();
             }
+            switchTurn()
         }
     
         return {addmark, restart, randomFromUnchecked};
